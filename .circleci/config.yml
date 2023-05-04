@@ -45,13 +45,14 @@ jobs:
           path: junit.xml
 
 workflows:
-  Build:
+  Build and Test:
     jobs:
-      - Cache Build
-  Test and Check:
-    jobs:
+      - Cache Build:
+          name: Cache TypeScript Build
       - Test:
           name: Test - Node.js v<< matrix.node-version >>
+          requires:
+            - Cache Build
           matrix:
             parameters:
               node-version:
