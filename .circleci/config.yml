@@ -63,7 +63,7 @@ jobs:
             - FIXME-TEMP-CACHE-BUSTER-v2-build-{{ .Branch }}
       - run:
           name: Run tests
-          command: npm run test:ci -- --shard=$((${CIRCLE_NODE_INDEX}+1))/$CIRCLE_NODE_TOTAL
+          command: npm run test:ci -- --shard=$((${CIRCLE_NODE_INDEX}+1))/$CIRCLE_NODE_TOTAL --runInBand --detectOpenHandles
       - store_test_results:
           path: junit.xml
 
