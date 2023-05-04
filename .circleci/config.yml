@@ -47,11 +47,10 @@ jobs:
           path: junit.xml
 
 workflows:
-  version: 2
   Build:
     jobs:
       - Cache Build
-  Test:
+  Test / Check:
     jobs:
       - Test:
           name: Test - Node.js v<< matrix.node-version >>
