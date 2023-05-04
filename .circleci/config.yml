@@ -47,8 +47,7 @@ jobs:
 workflows:
   Build and Test:
     jobs:
-      - Cache Build:
-          name: Cache TypeScript Build
+      - Cache Build
       - Test:
           name: Test - Node.js v<< matrix.node-version >>
           requires:
