@@ -13,7 +13,7 @@ jobs:
       - node/install-packages
       - restore_cache:
           keys:
-            - build-{{ .Branch }}
+            - FIXME-TEMP-CACHE-BUSTER-build-{{ .Branch }}
       - run:
           name: Compile
           command: npm run compile
@@ -24,9 +24,27 @@ jobs:
       #       - ./*/*.tsbuildinfo
       - save_cache:
           paths:
-            - ./*/dist
-            - ./*/*.tsbuildinfo
-          key: build-{{ .Branch }}
+            - ./composition-js/dist
+            - ./composition-js/tsconfig.tsbuildinfo
+            - ./composition-js/tsconfig.test.tsbuildinfo
+            - ./federation-integration-testsuite/dist
+            - ./federation-integration-testsuite/tsconfig.tsbuildinfo
+            - ./gateway-js/dist
+            - ./gateway-js/tsconfig.tsbuildinfo
+            - ./gateway-js/tsconfig.test.tsbuildinfo
+            - ./internals-js/dist
+            - ./internals-js/tsconfig.tsbuildinfo
+            - ./internals-js/tsconfig.test.tsbuildinfo
+            - ./query-graphs/dist
+            - ./query-graphs/tsconfig.tsbuildinfo
+            - ./query-graphs/tsconfig.test.tsbuildinfo
+            - ./query-planner-js/dist
+            - ./query-planner-js/tsconfig.tsbuildinfo
+            - ./query-planner-js/tsconfig.test.tsbuildinfo
+            - ./subgraph-js/dist
+            - ./subgraph-js/tsconfig.tsbuildinfo
+            - ./subgraph-js/tsconfig.test.tsbuildinfo
+          key: FIXME-TEMP-CACHE-BUSTER-build-{{ .Branch }}
   # Unfortunately cimg/node doesn't tag its images with major only, you have to specify a minor version.
   # We wouldn't need this job if it did, we could just use node/test with a matrix of node major versions.
   Test:
@@ -46,7 +64,7 @@ jobs:
       - node/install-packages
       - restore_cache:
           keys:
-            - build-{{ .Branch }}
+            - FIXME-TEMP-CACHE-BUSTER-build-{{ .Branch }}
       # - attach_workspace:
       #     at: .
       - run:
@@ -63,7 +81,7 @@ jobs:
       - node/install-packages
       - restore_cache:
           keys:
-            - build-{{ .Branch }}
+            - FIXME-TEMP-CACHE-BUSTER-build-{{ .Branch }}
 
 workflows:
   Build and Test:
