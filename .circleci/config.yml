@@ -11,8 +11,9 @@ jobs:
     steps:
       - checkout
       - node/install-packages
-      - node/run:
-          npm-run: compile
+      - run:
+          name: Compile
+          command: npm run compile
       - persist_to_workspace:
           root: .
           paths:
@@ -37,9 +38,6 @@ jobs:
       - node/install-packages
       - attach_workspace:
           at: .
-      # might not need this but it should be almost free after attaching the workspace
-      - node/run:
-          npm-run: compile
       - run:
           name: Run tests
           command: npm run test:ci
@@ -50,7 +48,7 @@ workflows:
   Build:
     jobs:
       - Cache Build
-  Test / Check:
+  Test and Check:
     jobs:
       - Test:
           name: Test - Node.js v<< matrix.node-version >>
