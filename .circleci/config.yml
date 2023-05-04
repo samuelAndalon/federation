@@ -7,10 +7,9 @@ jobs:
   Cache Build:
     description: "Cache the TypeScript build"
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node
     steps:
       - checkout
-      - node/install
       - node/install-packages
       - node/run:
           name: Build
@@ -39,6 +38,10 @@ jobs:
       - node/install-packages
       - attach_workspace:
           at: .
+      # might not need this but it should be almost free after attaching the workspace
+      - node/run:
+          name: Build
+          npm-run: compile
       - run:
           name: Run tests
           command: npm run test:ci
