@@ -89,7 +89,8 @@ workflows:
           npm-run: codegen:check
       - node/run:
           name: Check Hints Code Doc
-          override-ci-command: npm ci && npm run compile
+          requires:
+            - Cache Build
           npm-run: hints-doc:check
       - node/run:
           name: Check Spelling
