@@ -6,10 +6,11 @@
   "scripts": {
     "clean": "git clean -dfqX -- ./target ./node_modules **/{dist,node_modules}/ ./*/tsconfig*tsbuildinfo",
     "compile": "tsc --build tsconfig.build.json",
+    "compile:test": "tsc --build tsconfig.test.json",
     "compile:clean": "npm run compile -- --clean",
     "watch": "npm run compile && tsc --build tsconfig.json --watch",
     "version": "npm i --package-lock-only && git add package-lock.json",
-    "pretest": "npm run compile && tsc --build tsconfig.test.json",
+    "pretest": "npm run compile && npm run compile:test",
     "test": "jest --verbose",
     "test:clean": "jest --clearCache",
     "test:watch": "jest --verbose --watchAll",
