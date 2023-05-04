@@ -43,11 +43,23 @@ jobs:
           command: npm run test:ci
       - store_test_results:
           path: junit.xml
+  Demo:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - node/install
+      - node/install-packages
+      - attach_workspace:
+          at: .
 
 workflows:
   Build and Test:
     jobs:
       - Cache Build
+      - Demo:
+          requires:
+            - Cache Build
       - Test:
           name: Test - Node.js v<< matrix.node-version >>
           requires:
