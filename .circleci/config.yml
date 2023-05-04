@@ -14,11 +14,11 @@ jobs:
       - node/run:
           name: Build
           npm-run: compile
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./*/dist
-            - ./*/*.tsbuildinfo
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #       - ./*/dist
+      #       - ./*/*.tsbuildinfo
   # Unfortunately cimg/node doesn't tag its images with major only, you have to specify a minor version.
   # We wouldn't need this job if it did, we could just use node/test with a matrix of node major versions.
   Test:
@@ -36,8 +36,8 @@ jobs:
       # should be able to remove this step when we drop node v14
       - run: npm install -g npm@latest
       - node/install-packages
-      - attach_workspace:
-          at: .
+      # - attach_workspace:
+      #     at: .
       # might not need this but it should be almost free after attaching the workspace
       - node/run:
           name: Build
