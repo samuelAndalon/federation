@@ -4,6 +4,22 @@ orbs:
   node: circleci/node@5.1.0
 
 jobs:
+  Cache Build:
+    description: "Cache the TypeScript build"
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - node/install
+      - node/install-packages
+      - node/run:
+          name: Build
+          npm-run: compile
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./*/dist
+            - ./*/*.tsbuildinfo
   # Unfortunately cimg/node doesn't tag its images with major only, you have to specify a minor version.
   # We wouldn't need this job if it did, we could just use node/test with a matrix of node major versions.
   Test:
@@ -21,6 +37,8 @@ jobs:
       # should be able to remove this step when we drop node v14
       - run: npm install -g npm@latest
       - node/install-packages
+      - attach_workspace:
+          at: .
       - run:
           name: Run tests
           command: npm run test:ci
@@ -30,6 +48,9 @@ jobs:
 workflows:
   version: 2
   Build:
+    jobs:
+      - Cache Build
+  Test:
     jobs:
       - Test:
           name: Test - Node.js v<< matrix.node-version >>
