@@ -63,27 +63,14 @@ jobs:
             - FIXME-TEMP-CACHE-BUSTER-v2-build-{{ .Branch }}
       - run:
           name: Run tests
-          command: npm run test:ci -- --shard=$CIRCLE_NODE_INDEX/$CIRCLE_NODE_TOTAL
+          command: npm run test:ci -- --shard=$($CIRCLE_NODE_INDEX + 1)/$CIRCLE_NODE_TOTAL
       - store_test_results:
           path: junit.xml
-  Demo:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - node/install
-      - node/install-packages
-      - restore_cache:
-          keys:
-            - FIXME-TEMP-CACHE-BUSTER-v2-build-{{ .Branch }}
 
 workflows:
   Build and Test:
     jobs:
       - Cache Build
-      - Demo:
-          requires:
-            - Cache Build
       - Test:
           name: Test - Node.js v<< matrix.node-version >>
           requires:
