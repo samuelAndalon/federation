@@ -56,7 +56,7 @@ rows.sort(sortRowsByCode);
 
 const hintsSectionHeader = `The following hints might be generated during composition:`;
 
-const hintsByLevel = [];
+const hintsByLevel: string[] = [];
 
 for (const level of [HintLevel.WARN, HintLevel.INFO, HintLevel.DEBUG]) {
   const levelName = HintLevel[level];

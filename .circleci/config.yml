@@ -82,12 +82,14 @@ workflows:
                 - "18"
                 - "20"
       - node/run:
-          name: Check - << matrix.check-command >>
-          matrix:
-            parameters:
-              check-command:
-                - "error-code-doc:check"
-                - "hints-doc:check"
-                - "codegen:check"
-                - "spell:check"
-          npm-run: << matrix.check-command >>
+          name: Check - Error Code Doc
+          npm-run: error-code-doc:check
+      - node/run:
+          name: Check - Hints Doc
+          npm-run: hints-doc:check
+      - node/run:
+          name: Check - Codegen Types
+          npm-run: codegen:check
+      - node/run:
+          name: Check - Spelling
+          npm-run: spell:check
