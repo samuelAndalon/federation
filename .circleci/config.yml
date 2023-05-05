@@ -7,7 +7,7 @@ jobs:
   Cache Build:
     description: "Cache the TypeScript build"
     docker:
-      - image: cimg/node:lts
+      - image: cimg/node:current
     steps:
       - checkout
       - node/install-packages
@@ -82,16 +82,12 @@ workflows:
                 - "18"
                 - "20"
       - node/run:
-          name: Check Error Code Doc
-          npm-run: error-code-doc:check
-      - node/run:
-          name: Check GraphQL Types
-          npm-run: codegen:check
-      - node/run:
-          name: Check Hints Code Doc
-          requires:
-            - Cache Build
-          npm-run: hints-doc:check
-      - node/run:
-          name: Check Spelling
-          npm-run: spell:check
+          name: Check - << matrix.check-command >>
+          matrix:
+            parameters:
+              check-command:
+                - "error-code-doc:check"
+                - "hints-doc:check"
+                - "codegen:check"
+                - "spell:check"
+          npm-run: << matrix.check-command >>

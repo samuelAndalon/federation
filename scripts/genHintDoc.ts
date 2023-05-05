@@ -1,5 +1,5 @@
-import { assert, MultiMap } from '@apollo/federation-internals';
-import { HintCodeDefinition, HintLevel, HINTS } from './hints';
+import { assert, MultiMap } from '../internals-js/src/utils';
+import { HintCodeDefinition, HintLevel, HINTS } from '../composition-js/src/hints';
 
 const header = `---
 title: Composition hints
