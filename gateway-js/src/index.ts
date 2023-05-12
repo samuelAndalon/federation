@@ -58,6 +58,9 @@ import {
 import { getDefaultLogger } from './logger';
 import {GatewayInterface, GatewayUnsubscriber, GatewayGraphQLRequestContext, GatewayExecutionResult} from '@apollo/server-gateway-interface';
 
+// effectful logging function to ensure federation packages are installed correctly
+import './utilities/lockstepVersioning';
+
 type DataSourceMap = {
   [serviceName: string]: { url?: string; dataSource: GraphQLDataSource };
 };
