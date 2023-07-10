@@ -442,6 +442,7 @@ export function isTypeNodeAnEntity(
         isEntity = true;
         return BREAK;
       }
+      return;
     },
   });
 
@@ -596,6 +597,7 @@ export function diffTypeNodes(
           unionTypesDiff[name] = true;
         }
       }
+      return;
     },
     DirectiveDefinition(node) {
       node.locations.forEach(location => {
