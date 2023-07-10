@@ -33,8 +33,8 @@
     "apollo-federation-integration-testsuite": "file:federation-integration-testsuite-js"
   },
   "devDependencies": {
-    "@apollo/cache-control-types": "1.0.2",
-    "@apollo/client": "3.7.14",
+    "@apollo/cache-control-types": "1.0.3",
+    "@apollo/client": "3.7.17",
     "@apollo/utils.fetcher": "1.1.1",
     "@graphql-codegen/cli": "3.3.1",
     "@graphql-codegen/typescript": "3.0.4",
@@ -53,7 +53,7 @@
     "@types/node-fetch": "2.6.4",
     "apollo-server": "3.12.0",
     "bunyan": "1.8.15",
-    "graphql": "16.6.0",
+    "graphql": "16.7.1",
     "graphql-tag": "2.12.6",
     "jest": "28.1.3",
     "jest-config": "28.1.3",
@@ -63,13 +63,13 @@
     "log4js": "6.9.1",
     "mocked-env": "1.3.5",
     "nock": "13.3.1",
-    "node-fetch": "2.6.11",
+    "node-fetch": "2.6.12",
     "prettier": "3.0.0",
     "prompt-confirm": "2.0.4",
     "strip-indent": "3.0.0",
     "ts-jest": "28.0.8",
-    "typescript": "5.0.4",
-    "winston": "3.8.2",
+    "typescript": "5.1.6",
+    "winston": "3.10.0",
     "winston-transport": "4.5.0"
   },
   "jest": {
@@ -82,6 +82,6 @@
     ]
   },
   "volta": {
-    "node": "18.16.0"
+    "node": "18.16.1"
   }
 }
