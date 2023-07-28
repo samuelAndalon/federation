@@ -1,5 +1,19 @@
 # CHANGELOG for `@apollo/gateway`
 
+## 2.5.2
+### Patch Changes
+
+
+- Remove extraneous call to `span.setStatus()` on a span which has already ended. ([#2697](https://github.com/apollographql/federation/pull/2697))
+  
+  In cases where a subgraph responded with an error, we would sometimes try to set
+  the status of a span which had already ended. This resulted in a warning log to
+  the console (but no effect otherwise). This warning should no longer happen.
+- Updated dependencies []:
+  - @apollo/composition@2.5.2
+  - @apollo/federation-internals@2.5.2
+  - @apollo/query-planner@2.5.2
+
 ## 2.5.1
 ### Patch Changes
 
